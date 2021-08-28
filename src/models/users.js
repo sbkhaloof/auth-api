@@ -1,5 +1,5 @@
-  
 'use strict';
+
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -7,18 +7,10 @@ const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET || 'secretstring';
 
 const userModel = (sequelize, DataTypes) => {
-  const model = sequelize.define('lab08', {
-    username: { 
-      type: DataTypes.STRING,
-       required: true,
-        unique: true },
-    password: { 
-      type: DataTypes.STRING,
-       required: true },
-    role: {
-       type: DataTypes.ENUM('user', 'writer', 'editor', 'admin'),
-        required: true, 
-        defaultValue: 'user'},
+  const model = sequelize.define('Userslab08', {
+    username: { type: DataTypes.STRING, required: true, unique: true },
+    password: { type: DataTypes.STRING, required: true },
+    role: { type: DataTypes.ENUM('user', 'writer', 'editor', 'admin'), required: true, defaultValue: 'user' },
     token: {
       type: DataTypes.VIRTUAL,
       get() {
@@ -56,11 +48,9 @@ const userModel = (sequelize, DataTypes) => {
   };
 
   model.authenticateToken = async function (token) {
-    console.log(token,'token-------------------------')
-    console.log(jwt.decode(token),'decode token----------------------')
     try {
       const parsedToken = jwt.verify(token, SECRET);
-      const user = this.findOne({where: { username: parsedToken.username } });
+      const user = await this.findOne({ where: { username: parsedToken.username } });
       if (user) { return user; }
       throw new Error("User Not Found");
     } catch (e) {

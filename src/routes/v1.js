@@ -22,7 +22,9 @@ router.put('/:model/:id', handleUpdate);
 router.delete('/:model/:id', handleDelete);
 
 async function handleGetAll(req, res) {
+  console.log('all data');
   let allRecords = await req.model.get();
+  console.log(allRecords);
   res.status(200).json(allRecords);
 }
 

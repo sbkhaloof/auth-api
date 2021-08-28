@@ -34,6 +34,7 @@ async function handleGetAll(req, res) {
   }
   
   async function handleCreate(req, res) {
+    console.log(req.body);
     let obj = req.body;
     let newRecord = await req.model.create(obj);
     res.status(201).json(newRecord);
