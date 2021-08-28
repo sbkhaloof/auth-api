@@ -1,12 +1,14 @@
 # auth-api
 [pull request](https://github.com/sbkhaloof/auth-api/pull/1)
+
+
 [heroku link](https://siham-auth-api.herokuapp.com/)
 
 
 ### `.env`
- > PORT
-SECRET
-DATABASE_URL
++ PORT
++ SECRET
++ DATABASE_URL
 
 ---
 

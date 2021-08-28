@@ -1,9 +1,12 @@
-'use strict';
+"use strict";
 
-const foodModel = (sequelize, DataTypes) => sequelize.define('Food', {
-  name: { type: DataTypes.STRING, required: true },
-  calories: { type: DataTypes.NUMBER, required: true },
-  type: { type: DataTypes.ENUM('fruit', 'vegetable', 'protein'), required: true }
-});
+// id column will be added by default with datatibe SERIAL
+const Food = (sequelize, DataTypes) =>
+  sequelize.define("food", {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  });
 
-module.exports = foodModel;
+module.exports = Food;
